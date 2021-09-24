@@ -1,5 +1,7 @@
 # Migrate from Java to Kotlin
 
+Calculator example with web
+
 ### Requirements:
 - migrate an existing project from Java to Kotlin
 - changes to the structure and the level of changes are left to your discretion
