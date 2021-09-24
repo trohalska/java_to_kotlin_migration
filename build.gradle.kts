@@ -9,6 +9,7 @@ plugins {
 
 group = "com.epam"
 version = "0.1"
+val kotestVersion = "4.2.6"
 
 repositories {
     mavenCentral()
@@ -19,11 +20,13 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
 }
 
 sourceSets {
     getByName("main").java.srcDirs("main")
     getByName("main").resources.srcDirs("resources")
+    getByName("test").java.srcDirs("test")
 }
 
 tasks.withType<KotlinCompile>().configureEach {
@@ -32,4 +35,7 @@ tasks.withType<KotlinCompile>().configureEach {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         useIR = true
     }
+}
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
