@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>calculator</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+        <style>
+            body {
+                background-color: #c6cfc8;
+            }
+            input.button {
+                width: 30px; 
+                height: 30px;
+            }
+            .result {
+                text-decoration: limegreen;
+                color: limegreen;
+            }
+        </style>
+        
+    <body>
+        
+        <h1>Simple calculator:</h1>
+        <form action="#" th:action="@{/calculator}" th:object="${operationModel}" method="POST">
+            <input type="text" th:field="*{a}"/>
+            <input type="text" th:field="*{b}"/>
+            <p>
+                <input type="submit" class="button" name="add" value="+"/>
+                <input type="submit" class="button" name="subtract" value="-"/>
+                <input type="submit" class="button" name="multiply" value="*"/>
+                <input type="submit" class="button" name="divide" value="/"/>
+                <input type="submit" class="button" name="resetCalculator" value="C"/>
+            </p>
+        
+            <h1>Advanced calculator:</h1>
+            <input type="text" th:field="*{c}"/>
+            <p>
+                <input type="submit" class="button" name="fibonacci" value="fib"/>
+                <input type="submit" class="button" name="factorial" value="!"/>
+                <input type="submit" class="button" name="sqrt" value=&#8730 />
+                <input type="submit" class="button" name="power" value="^"/>
+                <input type="submit" class="button" name="resetAdvancedCalculator" value="C"/>
+            </p>
+            <h1><span>Result: </span><span class="result" th:text="${result}"></span></h1>
+        </form>
+
+        <h1>History of the operations:</h1>
+        <p th:each="historyElement: ${history}">
+            <span th:text="${historyElement}"></span>
+        </p>
+    </body>
+</html>
